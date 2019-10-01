@@ -47,10 +47,11 @@ class _Login extends Component{
   render(){
     const { attemptLogin } = this.props;
     return (
-        <div>
-          <button onClick={ ()=> attemptLogin('moe')}>Login As Moe</button>
-          <button onClick={ ()=> attemptLogin('lucy')}>Login As Lucy</button>
-        </div>
+      null
+        // <div>
+        //   <button onClick={ ()=> attemptLogin('moe')}>Login As Moe</button>
+        //   <button onClick={ ()=> attemptLogin('lucy')}>Login As Lucy</button>
+        // </div>
     );
   }
 }

@@ -6,7 +6,7 @@ const path = require('path');
 app.use(require('express-session')({
   secret: process.env.SECRET 
 }));
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, ()=> console.log(`listening on port ${port}`));
 
 const users = {
