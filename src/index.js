@@ -20,9 +20,9 @@ const store = createStore(
 );
 
 const actions = {};
-actions.attemptLogin = (username, history)=> {
+actions.attemptLogin = (email, password, history)=> {
   return async(dispatch)=> {
-    const auth = (await axios.post('/api/sessions', { username })).data;
+    const auth = (await axios.post('/api/sessions', { email, password })).data;
     dispatch({ type: 'SET_AUTH', auth});
     history.push('/');
   };
@@ -44,14 +44,32 @@ actions.logout = ()=> {
 
 /* Login */
 class _Login extends Component{
+  constructor(){
+    super();
+    this.state={
+      email:'',
+      password:''
+    }
+    this.onChange = this.onChange.bind(this)
+  }
+  onChange(ev){
+    const value = ev.target.value
+    this.setState({[ev.target.name]: value}, ()=>console.log(this.state))
+  }
   render(){
     const { attemptLogin } = this.props;
+    const {email, password} = this.state;
+    const {onChange} = this
     return (
-      null
-        // <div>
-        //   <button onClick={ ()=> attemptLogin('moe')}>Login As Moe</button>
-        //   <button onClick={ ()=> attemptLogin('lucy')}>Login As Lucy</button>
-        // </div>
+        <div>
+          <label> email:
+            <input name='email' value={email} onChange={onChange}/>
+          </label>
+          <label> password:
+            <input name='password' value={password} onChange={onChange}/>
+          </label>
+          <button onClick={()=>attemptLogin(email, password)}>login</button>
+        </div>
     );
   }
 }
@@ -64,7 +82,7 @@ const Login = connect(
   },
   (dispatch, { history })=> {
     return {
-      attemptLogin: (username)=> dispatch(actions.attemptLogin(username, history))
+      attemptLogin: (email, password)=> dispatch(actions.attemptLogin(email, password, history))
     }
   }
 )(_Login);

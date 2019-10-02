@@ -11,6 +11,11 @@
     "type": "git",
     "url": "git+https://github.com/Cruzm430/acme-login.git"
   },
+  "babel": {
+    "presets": [
+      "@babel/react"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -20,7 +25,9 @@
   "homepage": "https://github.com/Cruzm430/acme-login#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-session": "^1.16.2"
+    "express-session": "^1.16.2",
+    "pg": "^7.12.1",
+    "sequelize": "^5.19.2"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
